@@ -10,6 +10,7 @@ spec:
       elements:
       - name: dev
       - name: dev2
+      - name: dev3
   template:
     metadata:
       name: '{{name}}'
