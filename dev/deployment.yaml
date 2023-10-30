@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: bash:4.4
-        command: ["env && sleep 10000"]
+        image: nginx:latest
         ports:
         - containerPort: 8080
