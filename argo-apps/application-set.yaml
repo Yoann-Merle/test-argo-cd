@@ -9,9 +9,7 @@ spec:
   - list:
       elements:
       - name: dev
-        namespace: dev-n
       - name: dev2
-        namespace: dev2-n
   template:
     metadata:
       name: '{{name}}'
@@ -25,7 +23,6 @@ spec:
         path: 'apps/{{name}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{namespace}}'
 
       syncPolicy:
         syncOptions:
