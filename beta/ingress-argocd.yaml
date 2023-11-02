@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-http-ingress
+  namespace: argocd
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "35.205.145.155/32"
+    nginx.ingress.kubernetes.io/whitelist-source-range: 35.205.145.155/32, 192.30.252.0/22, 185.199.108.0/22, 140.82.112.0/20, 143.55.64.0/20
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: http
+    host: argocd.beta.elmy.team
+  tls:
+  - hosts:
+    - argocd.beta.elmy.team
+    secretName: argocd.beta.elmy.team-cert
+
